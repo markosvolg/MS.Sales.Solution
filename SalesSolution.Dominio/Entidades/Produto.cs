@@ -13,7 +13,12 @@ namespace SalesSolution.Dominio.Entidades
 
         public override void Validate()
         {
-            throw new NotImplementedException();
+            LimparMensagemValidacao();
+
+            if (Preco == 0)
+            {
+                AdicionarCritica("Produto não esta com valor");
+            }
         }
     }
 }

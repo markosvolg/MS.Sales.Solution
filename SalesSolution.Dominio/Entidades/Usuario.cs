@@ -17,6 +17,9 @@ namespace SalesSolution.Dominio.Entidades
 
         public override void Validate()
         {
+
+            LimparMensagemValidacao();
+
             if (string.IsNullOrEmpty(Email))
             {
                 AdicionarCritica("Email não informado");

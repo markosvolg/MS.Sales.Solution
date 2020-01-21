@@ -8,6 +8,8 @@
 
         public override void Validate()
         {
+            LimparMensagemValidacao();
+
             if (ProdutoId == 0)
             {
                 AdicionarCritica("Não foi indetificado qual a referencia desse produto");
