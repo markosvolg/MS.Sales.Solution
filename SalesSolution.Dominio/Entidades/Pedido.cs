@@ -1,10 +1,11 @@
 ﻿using SalesSolution.Dominio.ObjetoValor;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SalesSolution.Dominio.Entidades
 {
-    public class Pedido
+    public class Pedido : Entidade
     {
         public int ID { get; set; }
 
@@ -25,5 +26,24 @@ namespace SalesSolution.Dominio.Entidades
         /// Pedido pode ter pelo menos um ou varios itens de pedidos
         /// </summary>
         public ICollection<ItemPedido> ItensPedido { get; set; }
+
+        public override void Validate()
+        {
+            LimparMensagemValidacao();
+
+            if (!ItensPedido.Any())
+                AdicionarCritica("Pedido não pode ficar sem item de pedido");
+
+            if (string.IsNullOrEmpty(CEP) )
+            {
+                AdicionarCritica("Cep deve ser preenchido");
+
+            }
+            if (FormaPagamentoId == 0)
+            {
+                AdicionarCritica("Não foi informado a forma de pagamento");
+            }
+
+        }
     }
 }

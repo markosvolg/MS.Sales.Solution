@@ -2,7 +2,7 @@
 
 namespace SalesSolution.Dominio.Entidades
 {
-    public class Usuario
+    public class Usuario : Entidade
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -14,5 +14,17 @@ namespace SalesSolution.Dominio.Entidades
         /// Um usuario pode ter um pedido ou muitos pedidos
         /// </summary>
         public  ICollection<Pedido> Pedidos { get; set; }
+
+        public override void Validate()
+        {
+            if (string.IsNullOrEmpty(Email))
+            {
+                AdicionarCritica("Email não informado");
+            }
+            if (string.IsNullOrEmpty(Senha))
+            {
+                AdicionarCritica("Senha não foi informada");
+            }
+        }
     }
 }
