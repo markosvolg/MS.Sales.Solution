@@ -27,5 +27,10 @@ namespace SalesSolution.Dominio.ObjetoValor
         {
             get { return Id == (int)TipoFormaPagamentoEnum.NaoDefinido; }
         }
+
+        public bool EhDebito
+        {
+            get { return Id == (int)TipoFormaPagamentoEnum.EhDebito; }
+        }
     }
 }

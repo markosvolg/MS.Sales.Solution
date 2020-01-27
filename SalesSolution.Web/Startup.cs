@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SalesSolution.Repositorio.Contexto;
 
 namespace SalesSolution.Web
 {
@@ -12,7 +14,10 @@ namespace SalesSolution.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("config.json",optional :false, reloadOnChange: true );
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -21,6 +26,12 @@ namespace SalesSolution.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var connectionstring = Configuration.GetConnectionString("SalesSolutionDB");
+            services.AddDbContext<SalesSolutionContexto>(option => 
+                                                                option.UseLazyLoadingProxies()
+                                                                .UseMySql(connectionstring, m=> m.MigrationsAssembly("SalesSolution.Repositorio")));
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

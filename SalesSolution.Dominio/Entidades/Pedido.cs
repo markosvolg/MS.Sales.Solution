@@ -7,10 +7,11 @@ namespace SalesSolution.Dominio.Entidades
 {
     public class Pedido : Entidade
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public DateTime DataPedido { get; set; }
         public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
 
         public DateTime DataPrevisaoEntrega { get; set; }
 
@@ -20,12 +21,12 @@ namespace SalesSolution.Dominio.Entidades
         public string EnderecoCompleto { get; set; }
         public int NumeroEndereco { get; set; }
         public int FormaPagamentoId { get; set; }
-        public FormaPagamento FormaPagamento { get; set; }
+        public virtual FormaPagamento FormaPagamento { get; set; }
 
         /// <summary>
         /// Pedido pode ter pelo menos um ou varios itens de pedidos
         /// </summary>
-        public ICollection<ItemPedido> ItensPedido { get; set; }
+        public virtual ICollection<ItemPedido> ItensPedido { get; set; }
 
         public override void Validate()
         {

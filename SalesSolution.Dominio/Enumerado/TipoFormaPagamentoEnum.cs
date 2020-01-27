@@ -9,7 +9,8 @@ namespace SalesSolution.Dominio.Enumerado
         NaoDefinido = 0,
         Boleto = 1,
         CartaoCretito = 2,
-        Deposito = 4
+        Deposito = 3,
+        Debito = 4
 
     }
 }

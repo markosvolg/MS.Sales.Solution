@@ -1,0 +1,6 @@
+{
+  "ConnectionStrings": {
+    "SqlServerConnection": "",
+    "SalesSolutionDB": "Server=localhost;DataBase=SalesSolutionDB;Uid=root;Pwd=ma@123456"
+  }
+}
