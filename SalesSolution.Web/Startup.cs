@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SalesSolution.Dominio.Contratos;
 using SalesSolution.Repositorio.Contexto;
+using SalesSolution.Repositorio.Repositorios;
 
 namespace SalesSolution.Web
 {
@@ -31,6 +33,11 @@ namespace SalesSolution.Web
             services.AddDbContext<SalesSolutionContexto>(option => 
                                                                 option.UseLazyLoadingProxies()
                                                                 .UseMySql(connectionstring, m=> m.MigrationsAssembly("SalesSolution.Repositorio")));
+
+
+
+            services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
+
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -79,8 +86,8 @@ namespace SalesSolution.Web
 
                 if (env.IsDevelopment())
                 {
-                   // spa.UseAngularCliServer(npmScript: "start");
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                   spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

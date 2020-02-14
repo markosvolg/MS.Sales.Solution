@@ -1,0 +1,59 @@
+<div class=" text-center">
+  <form class="form-login">
+    <h4 class="login  m-2"> Login Usuario</h4>
+
+    <label for="imputEmail" class="sr-only">Email</label>
+    <input type="text" id="imputEmail" name="Email"
+           placeholder="Informe seu email aqui"
+           class="form-control mb-2"
+           [ngClass]="{
+           'is-valid':email.valid && (email.dirty || email.touched),
+           'is-invalid':email.invalid && (email.dirty || email.touched)
+           }"
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           email
+           required />
+
+    <div class="invalid-feedback m-2" *ngIf="email.invalid && (email.dirty || email.touched)">
+      <div>
+        Email e Inválido ou Incorreto
+      </div>
+    </div>
+
+
+    <label for="imputPassword" class="sr-only">Senha</label>
+    <input type="password" id="imputPassword" name="Senha"
+           placeholder="Digite a senha"
+           [ngClass]="{
+           'is-valid': senha.valid && (senha.dirty || senha.touched),
+           'is-invalid': senha.invalid && (senha.dirty || senha.touched)
+           }"
+           class="form-control mb-2"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required />
+
+    <div class="invalid-feedback m-2" *ngIf="senha.invalid && (senha.dirty || senha.touched)">
+      <div>
+        Senha e Invalido
+      </div>
+    </div>
+
+
+    <button class="btn btn-primary btn-block mb-2" type="submit" (click)="entrar()">Entrar</button>
+
+
+    <img src="../../../assets/img/novo_logo.jpg" width="250" height="105" />
+
+    <!--<div class="alert alert-primary" role="alert" *ngIf="autenticationLogin">
+      Usuario Valido!
+    </div>
+    <div class="alert alert-warning" role="alert">
+      <div *ngFor="let us of usuarios">
+        {{us}}
+      </div>
+    </div>-->
+
+  </form>
+</div>
